@@ -15,6 +15,7 @@
 		F24BBA961BF4357D00AA08DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24BBA941BF4357D00AA08DA /* LaunchScreen.storyboard */; };
 		F24BBAA11BF4357D00AA08DA /* PracticeBlockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F24BBAA01BF4357D00AA08DA /* PracticeBlockTests.m */; };
 		F24BBAAC1BF4357D00AA08DA /* PracticeBlockUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F24BBAAB1BF4357D00AA08DA /* PracticeBlockUITests.m */; };
+		F24BBABB1BF4443000AA08DA /* ServiceLib.m in Sources */ = {isa = PBXBuildFile; fileRef = F24BBABA1BF4443000AA08DA /* ServiceLib.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		F24BBAA71BF4357D00AA08DA /* PracticeBlockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PracticeBlockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24BBAAB1BF4357D00AA08DA /* PracticeBlockUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PracticeBlockUITests.m; sourceTree = "<group>"; };
 		F24BBAAD1BF4357D00AA08DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F24BBAB91BF4443000AA08DA /* ServiceLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceLib.h; sourceTree = "<group>"; };
+		F24BBABA1BF4443000AA08DA /* ServiceLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceLib.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,8 @@
 				F24BBA941BF4357D00AA08DA /* LaunchScreen.storyboard */,
 				F24BBA971BF4357D00AA08DA /* Info.plist */,
 				F24BBA861BF4357D00AA08DA /* Supporting Files */,
+				F24BBAB91BF4443000AA08DA /* ServiceLib.h */,
+				F24BBABA1BF4443000AA08DA /* ServiceLib.m */,
 			);
 			path = PracticeBlock;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				F24BBA8E1BF4357D00AA08DA /* ViewController.m in Sources */,
 				F24BBA8B1BF4357D00AA08DA /* AppDelegate.m in Sources */,
 				F24BBA881BF4357D00AA08DA /* main.m in Sources */,
+				F24BBABB1BF4443000AA08DA /* ServiceLib.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
