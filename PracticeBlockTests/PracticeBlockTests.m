@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "ServiceLib.h"
+#import "ViewController.h"
 
 @interface PracticeBlockTests : XCTestCase
 
@@ -14,26 +16,78 @@
 
 @implementation PracticeBlockTests
 
-- (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+-(void)testBlock1{
+  XCTestExpectation *expectation =
+  [self expectationWithDescription:@"High Expectations"];
+  
+  ServiceLib *sLib = [[ServiceLib alloc] init];
+  
+  [sLib fetchGetResponseWithCallback:@"http://httpbin.org/get" success:^(NSDictionary *responseDict) {
+    
+    XCTAssert(responseDict != nil,@"block1 無法取得Data");
+    [expectation fulfill];
+    
+  } failure:^(NSError *error) {
+    
+    XCTAssert(error != nil,@"block1 無法取得Data");
+    [expectation fulfill];
+    
+  }];
+  
+  [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+    if (error) {
+      NSLog(@"Timeout Error: %@", error);
+    }
+  }];
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+-(void)testBlock2{
+  
+  XCTestExpectation *expectation =
+  [self expectationWithDescription:@"High Expectations"];
+  
+  ServiceLib *sLib = [[ServiceLib alloc] init];
+  
+  [sLib fetchGetResponseWithCallback:@"http://httpbin.org/get" callback:^(NSDictionary *responseDict, NSError *error) {
+    
+    //不符合預期才會中斷
+    XCTAssert(responseDict != nil,@"block2 無法取得Data");
+    [expectation fulfill];
+    
+    if(error){
+      NSLog(@"json: %@",responseDict);
+    }else{
+      NSLog(@"json: %@",responseDict);
+    }
+    
+  }];
+  
+  [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+    if (error) {
+      NSLog(@"Timeout Error: %@", error);
+    }
+  }];
+  
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+-(void)testBlock3{
+  
+  XCTestExpectation *expectation =
+  [self expectationWithDescription:@"High Expectations"];
+  
+  ServiceLib *sLib = [[ServiceLib alloc] init];
+  
+  // UIImage Block
+  [sLib fetchImageWithCallback:@"http://httpbin.org/image/png" callback:^(UIImage *image, NSError *error) {
+    XCTAssert(image != nil,@"照片讀取失敗");
+    [expectation fulfill];
+  }];
+  
+  [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+    if (error) {
+      NSLog(@"Timeout Error: %@", error);
+    }
+  }];
 }
 
 @end

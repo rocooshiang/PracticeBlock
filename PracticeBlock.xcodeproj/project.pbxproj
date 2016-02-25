@@ -15,7 +15,7 @@
 		F24BBA961BF4357D00AA08DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24BBA941BF4357D00AA08DA /* LaunchScreen.storyboard */; };
 		F24BBAA11BF4357D00AA08DA /* PracticeBlockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F24BBAA01BF4357D00AA08DA /* PracticeBlockTests.m */; };
 		F24BBAAC1BF4357D00AA08DA /* PracticeBlockUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F24BBAAB1BF4357D00AA08DA /* PracticeBlockUITests.m */; };
-		F24BBABB1BF4443000AA08DA /* ServiceLib.m in Sources */ = {isa = PBXBuildFile; fileRef = F24BBABA1BF4443000AA08DA /* ServiceLib.m */; settings = {ASSET_TAGS = (); }; };
+		F24BBABB1BF4443000AA08DA /* ServiceLib.m in Sources */ = {isa = PBXBuildFile; fileRef = F24BBABA1BF4443000AA08DA /* ServiceLib.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -504,6 +504,7 @@
 				F24BBAB21BF4357D00AA08DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F24BBAB31BF4357D00AA08DA /* Build configuration list for PBXNativeTarget "PracticeBlockTests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +513,7 @@
 				F24BBAB51BF4357D00AA08DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F24BBAB61BF4357D00AA08DA /* Build configuration list for PBXNativeTarget "PracticeBlockUITests" */ = {
 			isa = XCConfigurationList;
@@ -520,6 +522,7 @@
 				F24BBAB81BF4357D00AA08DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
