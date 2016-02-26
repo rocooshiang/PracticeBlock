@@ -33,10 +33,9 @@ XCTestExpectation *expectation;
     
     XCTAssertNotNil(responseDict,@"block1 無法取得Data");
     [expectation fulfill];
-    
   } failure:^(NSError *error) {
     
-    XCTAssertNotNil(error,@"block1 無法取得Data");
+    XCTFail(@"block1 取的資料失敗");
     [expectation fulfill];
     
   }];
@@ -56,14 +55,14 @@ XCTestExpectation *expectation;
     
     //不符合預期才會中斷
     XCTAssertNotNil(responseDict,@"block2 無法取得Data");
-    [expectation fulfill];
+    
     
     if(error){
       NSLog(@"json: %@",responseDict);
     }else{
       NSLog(@"json: %@",responseDict);
     }
-    
+    [expectation fulfill];
   }];
   
   [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
@@ -89,6 +88,39 @@ XCTestExpectation *expectation;
     if (error) {
       NSLog(@"Timeout Error: %@", error);
     }
+  }];
+}
+
+-(void)testURLTask{
+  NSURLSession * session = [NSURLSession sharedSession];
+  NSURL * URL = [NSURL URLWithString: @"http://httpbin.org/image/png"];
+  
+  NSURLSessionDataTask * task = [session dataTaskWithURL:URL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
+                                   
+    XCTAssertNotNil(data, "data should not be nil");
+    XCTAssertNil(error, "error should be nil");
+                                   
+    if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+      NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+      XCTAssertEqual(httpResponse.statusCode, 200, @"HTTP response status code should be 200");
+      XCTAssertEqualObjects(httpResponse.URL.absoluteString, URL.absoluteString, @"HTTP response URL should be equal to original URL");
+      XCTAssertEqualObjects(httpResponse.MIMEType, @"image/png", @"HTTP response content type should be text/html");
+    } else {
+      XCTFail(@"Response was not NSHTTPURLResponse");
+    }
+                                   
+    [expectation fulfill];
+                                   
+                                   
+  }];
+  
+  [task resume];
+  
+  [self waitForExpectationsWithTimeout:task.originalRequest.timeoutInterval handler:^(NSError *error) {
+    if (error != nil) {
+      NSLog(@"Error: %@", error.localizedDescription);
+    }
+    [task cancel];
   }];
 }
 
