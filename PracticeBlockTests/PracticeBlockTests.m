@@ -16,20 +16,27 @@
 
 @implementation PracticeBlockTests
 
--(void)testBlock1{
-  XCTestExpectation *expectation =
+XCTestExpectation *expectation;
+
+- (void)setUp {
+  [super setUp];
+  expectation =
   [self expectationWithDescription:@"High Expectations"];
+  
+}
+
+-(void)testBlock1{
   
   ServiceLib *sLib = [[ServiceLib alloc] init];
   
   [sLib fetchGetResponseWithCallback:@"http://httpbin.org/get" success:^(NSDictionary *responseDict) {
     
-    XCTAssert(responseDict != nil,@"block1 無法取得Data");
+    XCTAssertNotNil(responseDict,@"block1 無法取得Data");
     [expectation fulfill];
     
   } failure:^(NSError *error) {
     
-    XCTAssert(error != nil,@"block1 無法取得Data");
+    XCTAssertNotNil(error,@"block1 無法取得Data");
     [expectation fulfill];
     
   }];
@@ -43,15 +50,12 @@
 
 -(void)testBlock2{
   
-  XCTestExpectation *expectation =
-  [self expectationWithDescription:@"High Expectations"];
-  
   ServiceLib *sLib = [[ServiceLib alloc] init];
   
   [sLib fetchGetResponseWithCallback:@"http://httpbin.org/get" callback:^(NSDictionary *responseDict, NSError *error) {
     
     //不符合預期才會中斷
-    XCTAssert(responseDict != nil,@"block2 無法取得Data");
+    XCTAssertNotNil(responseDict,@"block2 無法取得Data");
     [expectation fulfill];
     
     if(error){
@@ -72,14 +76,12 @@
 
 -(void)testBlock3{
   
-  XCTestExpectation *expectation =
-  [self expectationWithDescription:@"High Expectations"];
-  
   ServiceLib *sLib = [[ServiceLib alloc] init];
   
   // UIImage Block
   [sLib fetchImageWithCallback:@"http://httpbin.org/image/png" callback:^(UIImage *image, NSError *error) {
-    XCTAssert(image != nil,@"照片讀取失敗");
+    
+    XCTAssertNotNil(image,@"block3 無法取得Data");
     [expectation fulfill];
   }];
   
